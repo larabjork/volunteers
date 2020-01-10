@@ -11,11 +11,6 @@ class Project
     (@title == compare.title)
   end
 
-  def save
-    id = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;").first.fetch("id").to_i
-    self
-  end
-
   def self.all
     returned_projects = DB.exec("SELECT * FROM projects;")
     projects = []
@@ -25,6 +20,22 @@ class Project
       projects.push(Project.new({:title => title, :id => id}))
     end
     projects
+  end
+
+  def save
+    id = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;").first.fetch("id").to_i
+    self
+  end
+
+  def self.find(id)
+    project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
+    if project
+      title = project.fetch("title")
+      id = project.fetch("id").to_i
+      Project.new({:title => title, :id => id})
+    else
+      nil
+    end
   end
 
 end
