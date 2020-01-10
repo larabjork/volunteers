@@ -17,7 +17,7 @@ get '/projects' do
     erb :projects
 end
 post '/projects' do
-    par1 = params[:project_title]
+    par1 = params[:title]
     Project.new({:title => par1}).save
     redirect to '/projects'
 end
@@ -31,9 +31,10 @@ get '/projects/:id' do
     erb :projects_ID
 end
 patch '/projects/:id' do
-  par1 = params[:project_title]
+  par1 = params[:title]
     Project.find(params[:id].to_i).update({:title => par1})
-    redirect to "/projects/#{params[:id]}"
+    # redirect to "/projects/#{params[:id]}"
+    redirect to "/projects"
 end
 delete '/projects/:id' do
     Project.find(params[:id].to_i).delete
