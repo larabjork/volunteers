@@ -1,6 +1,6 @@
 class Project
   attr_accessor :title, :id
-  
+
   def initialize(attributes)
     @title = attributes[:title]
     @id = attributes[:id].to_i
@@ -22,8 +22,8 @@ class Project
   end
 
   def save
-    id = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;").first.fetch("id").to_i
-    self
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
+    @id = result.first.fetch("id").to_i
   end
 
   def self.find(id)
