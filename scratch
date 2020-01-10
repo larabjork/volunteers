@@ -1,0 +1,11 @@
+patch '/projects/:id/volunteers/:volunteer_id' do
+  par1 = params[:volunteer_name]
+  Volunteer.find(params[:volunteer_id].to_i).update({:name => par1})
+  redirect to "/projects/#{params[:id]}"
+end
+
+delete('/projects/:id/volunteers/:volunteer_id') do
+    Volunteer.find(params[:volunteer_id].to_i).delete
+    @project = Project.find(params[:id].to_i)
+    erb :projects_ID
+end
