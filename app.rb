@@ -28,8 +28,10 @@ end
 
 get '/projects/:id' do
     @project = Project.find(params[:id].to_i)
+    # binding.pry
     erb :projects_ID
 end
+
 patch '/projects/:id' do
   par1 = params[:title]
     Project.find(params[:id].to_i).update({:title => par1})
@@ -45,7 +47,6 @@ get '/projects/:id/edit' do
     @project = Project.find(params[:id])
     erb :projects_ID_edit
 end
-
 
 post '/projects/:id' do
     params[:project_id] = params[:id]
