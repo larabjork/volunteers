@@ -3,7 +3,7 @@ class Project
 
   def initialize(attributes)
     @title = attributes[:title]
-    @id = attributes[:id].to_i
+    @id = attributes[:id]
   end
 
   def ==(compare)
@@ -46,30 +46,6 @@ class Project
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
     DB.exec("DELETE FROM volunteers WHERE project_id = #{@id};")
   end
-
-  # def title
-  #   project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
-  #   if project
-  #     title = project.fetch("title")
-  #     id = project.fetch("id").to_i
-  #     Project.new({:title => title, :id => id})
-  #   else
-  #     nil
-  #   end
-  # end
-
-  # def id
-  #   if @project
-  #     title = @project.fetch("title")
-  #     id = @project.fetch("id").to_i
-  #     Project.new({:title => title, :id => id})
-  #   else
-  #     nil
-  #   end
-  # end
-
-
-
 
   def volunteers
     Volunteer.find_by_project(self.id)
