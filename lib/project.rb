@@ -58,6 +58,17 @@ class Project
   #   end
   # end
 
+  # def id
+  #   if @project
+  #     title = @project.fetch("title")
+  #     id = @project.fetch("id").to_i
+  #     Project.new({:title => title, :id => id})
+  #   else
+  #     nil
+  #   end
+  # end
+
+
 
 
   def volunteers
