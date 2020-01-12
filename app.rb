@@ -49,12 +49,14 @@ get '/projects/:id/edit' do
 end
 
 post '/projects/:id' do
-    params[:project_id] = params[:id]
-    Volunteer.new(params).save
+    par1 = params[:name]
+    par2 = params[:id]
+    Volunteer.new({:name => par1, :project_id => par2}).save
     redirect to "/projects/#{params[:id]}"
 end
 
 get '/projects/:id/volunteers/:volunteer_id' do
+    @project = Project.find(params[:id].to_i)
     @volunteer = Volunteer.find(params[:volunteer_id].to_i)
     erb :project_ID_volunteer_ID
 end
