@@ -48,7 +48,7 @@ end
 
 post '/projects/:id' do
     par1 = params[:name]
-    par2 = params[:project_id]
+    par2 = params[:id]
     Volunteer.new({:name => par1, :project_id => par2}).save
     redirect to "/projects/#{params[:id]}"
 end
@@ -61,6 +61,6 @@ end
 
 patch '/projects/:id/volunteers/:volunteer_id' do
   par1 = params[:name]
-  Volunteer.find(params[:id].to_i).update({:name => par1})
+  Volunteer.find(params[:volunteer_id].to_i).update({:name => par1})
   redirect to "/projects/#{params[:id]}"
 end

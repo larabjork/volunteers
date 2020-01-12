@@ -5,7 +5,8 @@ class Volunteer
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @project_id = attributes.fetch(:project_id).to_i
-    @id = attributes.fetch(:id)
+    @id = attributes[:id]
+    # @id = attributes.fetch(:id)
   end
 
   def ==(vol_compare)
@@ -57,7 +58,10 @@ class Volunteer
     volunteers
   end
 
-
+  def update(new_attrs)
+    @name = new_attrs[:name]
+    DB.exec("UPDATE volunteers SET name = '#{@name}' WHERE id = #{@id};")
+  end
 
 
 end
