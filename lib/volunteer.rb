@@ -1,11 +1,11 @@
 class Volunteer
-  attr_reader :id, :project_id
-  attr_accessor :name
+  attr_reader :project_id
+  attr_accessor :name, :id
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @project_id = attributes.fetch(:project_id).to_i
-    @id = attributes.fetch(:id).to_i
+    @id = attributes.fetch(:id)
   end
 
   def ==(vol_compare)
@@ -31,6 +31,7 @@ class Volunteer
   def save
     result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i
+
   end
 
   def self.find(id)

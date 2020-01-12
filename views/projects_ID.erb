@@ -1,42 +1,44 @@
 
-<h4>Project Title: <%= @project.title %></h4>
+<h2>Project Title: <%= @project.title %></h2>
 
 
 <% if @project.volunteers %>
 <ul>
-    <% @project.volunteers.each do |volunteer| %>
-    <li><a href='/projects/<%= @project.id %>/volunteers/<%= volunteer.id %>'><%= volunteer.name %></a></li>
-    <% end %>
+  <% @project.volunteers.each do |volunteer| %>
+  <li><a href='/projects/<%= @project.id %>/volunteers/<%= volunteer.id %>'><%= volunteer.name %></a></li>
+  <% end %>
 </ul>
 <% else %>
 <p>There are no volunteers listed for this project yet.</p>
 <% end %>
 
-<form action='/projects/<%= @project.id() %>' method='post'>
-    <input name='_method' type='hidden' value='patch'>
-
-    <label>
-      Project Title
+<h3>Make Changes to Project</h3>
+<div class='row'>
+  <div class="col-lg-6">
+    <form action='/projects/<%= @project.id() %>' method='post'>
+      <input name='_method' type='hidden' value='patch'>
+      <label>Edit Project Title
         <input name='title' type='text' placeholder='<%= @project.title %>'>
-    </label>
+      </label>
+      <button type='submit' class='btn btn-info btn-lg'>Update Project</button>
+    </form>
+  </div>
+  <div class="col-lg-6">
+    <form action='/projects/<%= @project.id() %>' method='post'>
+      <label>Delete Project
+        <input name='_method' type='hidden' value='delete'>
+      </label>
+      <button type='submit' class='btn btn-info btn-lg'>Delete Project</button>
+    </form>
+  </div>
+</div>
 
-    <button type='submit' class='btn btn-info btn-lg'>Update Project</button>
-</form>
-
-<form action='/projects/<%= @project.id() %>' method='post'>
-  <input name='_method' type='hidden' value='delete'>
-
-  <button type='submit' class='btn btn-info btn-lg'>Delete Project</button>
-</form>
-
-<h4>Add a volunteer:</h4>
-
+<h3>Add a Volunteer</h3>
 <form action='/projects/<%= @project.id %>' method='post'>
-    <label>
-        Volunteer Name
-        <input name='name' type='text'>
-    </label>
-    <button type='submit' class='btn btn-info btn-lg'>Add Volunteer</button>
+  <label>Volunteer Name
+    <input name='name' type='text'>
+  </label>
+  <button type='submit' class='btn btn-info btn-lg'>Add Volunteer</button>
 </form>
 
 <p><a href='/projects/<%= @project.id %>/edit'>Edit Project</a></p>

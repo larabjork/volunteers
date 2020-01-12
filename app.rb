@@ -28,14 +28,12 @@ end
 
 get '/projects/:id' do
     @project = Project.find(params[:id].to_i)
-    # binding.pry
     erb :projects_ID
 end
 
 patch '/projects/:id' do
   par1 = params[:title]
     Project.find(params[:id].to_i).update({:title => par1})
-    # redirect to "/projects/#{params[:id]}"
     redirect to "/projects"
 end
 delete '/projects/:id' do
@@ -50,7 +48,7 @@ end
 
 post '/projects/:id' do
     par1 = params[:name]
-    par2 = params[:id]
+    par2 = params[:project_id]
     Volunteer.new({:name => par1, :project_id => par2}).save
     redirect to "/projects/#{params[:id]}"
 end
