@@ -1,5 +1,5 @@
 # Volunteer Tracker
-## Created by Lara Bjork on January 10, 2019
+## Created by Lara Bjork on January 10, 2020
 ### Project Description
 
 This project was completed as an independent assignment for the Ruby class at Epicodus, during a week focused on Ruby database basics. The task description was as follows:
