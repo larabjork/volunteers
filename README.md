@@ -53,4 +53,4 @@ https://github.com/larabjork/volunteers.git
 ### License
 This software is licensed under the MIT license.
 
-Copyright (c) 2019 Lara Bjork
+Copyright (c) 2020 Lara Bjork
